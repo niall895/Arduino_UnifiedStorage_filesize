@@ -185,6 +185,12 @@ public:
    * @return The path of the file as a String
    */
   String getPathAsString();
+  
+  /**
+   * @brief Returns the total size of the file.
+   * @return The size of the file in bytes as a int
+   */
+  uint32_t size();
 
   /**
    * @brief Returns the number of bytes available to read
