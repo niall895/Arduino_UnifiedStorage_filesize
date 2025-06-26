@@ -78,6 +78,22 @@ bool UFile::seek(size_t offset) {
     return (result == 0);
 }
 
+uint32_t UFile::size() {
+    // Check the available data in the file
+    if (filePointer == nullptr) {
+        // File pointer is not valid
+        return 0;
+    }
+    
+	int currentPosition = ftell(filePointer);
+	fseek(filePointer, 0, SEEK_END);
+	int fileSize = ftell(filePointer);
+	fseek(filePointer, currentPosition, SEEK_SET);
+
+    Arduino_UnifiedStorage::debugPrint("[File][size][INFO] Total bytes in file: " + String(fileSize));
+	return fileSize;
+}
+
 uint32_t UFile::available() {
     // Check the available data in the file
     if (filePointer == nullptr) {
